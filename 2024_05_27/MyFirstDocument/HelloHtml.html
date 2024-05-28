@@ -21,7 +21,7 @@
 </header>
 
 <main>
-    <header> <h2> Education only </h2></header>
+    <header> <h2 onclick="console.log('Click Element')"> Education only </h2></header>
     <div>
         <button type="button" class="btn btn-primary"> Button </button>
     </div>
@@ -33,6 +33,19 @@
 </footer>
 
 <script>
+
+    document.getElementById("mainHeader").onclick = () => {
+        console.log("Some Click");
+    }
+
+    document.getElementById("mainHeader").onmouseover = (ev) => {
+        ev.target.style.background = "#f00"
+    }
+
+    document.getElementById("mainHeader").onmouseout = (ev) => {
+        ev.target.style.background = "#fff"
+    }
+
     console.log("Hello World");
 </script>
 
