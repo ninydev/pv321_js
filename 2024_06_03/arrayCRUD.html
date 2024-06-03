@@ -15,15 +15,21 @@
     <div class="col-3">
       <ul id="ulProduct">
       </ul>
+      <div id="editHere"></div>
       <div>
       <input id="inProductName" type="text">
-      <button id="btnCreateProduct" name="myButtonName"> Create </button>
+      <button id="btnCreateProduct" name="myButtonName" class="btn btn-success">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"/>
+        </svg>
+        Create </button>
       </div>
       <div>
         <input id="inProductNum" type="number">
-        <button id="btnDeleteProduct"> Delete by number </button>
-        <button id="btnDeleteFirst"> Delete first </button>
-        <button id="btnDeleteLast"> Delete last </button>
+        <button id="btnDeleteProduct" class="btn btn-danger"> Delete by number </button>
+        <button id="btnDeleteFirst" class="btn btn-danger"> Delete first </button>
+        <button id="btnDeleteLast" class="btn btn-danger"> Delete last </button>
       </div>
 
     </div>
@@ -79,6 +85,7 @@
     arrProductList.forEach( (product, index) => {
       // Створюемо TAG <li></li>
       let li = document.createElement("li")
+      li.id = "product_id_" + index
       let span = document.createElement("span")
       span.innerText = product
       span.style.display = 'block'
@@ -106,6 +113,65 @@
       }
 
       li.appendChild(btnDel)
+
+      let btnEdit = document.createElement("button")
+      btnEdit.value = index
+      btnEdit.className = "btn btn-info"
+      btnEdit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">\n' +
+              '  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>\n' +
+              '  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>\n' +
+              '</svg>'
+      btnEdit.onclick = (ev) => {
+        // let productNumber = ev.target.value
+        let productNumber = btnEdit.value
+        // console.log(productNumber)
+        // Моливо знайти - перебераючи предків
+        // let li = ev.target.parentNode.parentNode
+
+        // Можно знайти - якщо я дав id
+        let liEdit =  document.getElementById("product_id_" + index)
+
+        // А ще - можно напряму - тому що є переменна з той li
+
+        let inEditProduct = document.createElement("input")
+        inEditProduct.value = arrProductList[index]
+        li.appendChild(inEditProduct)
+
+        // document.getElementById("editHere").appendChild(inEditProduct)
+
+
+        let btnSaveEdit = document.createElement("button")
+        btnSaveEdit.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-floppy\" viewBox=\"0 0 16 16\">\n" +
+                "  <path d=\"M11 2H9v3h2z\"/>\n" +
+                "  <path d=\"M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z\"/>\n" +
+                "</svg>"
+
+        btnSaveEdit.onclick = () => {
+          arrProductList[index] = inEditProduct.value
+          buildList()
+        }
+
+        li.appendChild(btnSaveEdit)
+
+        let btnClose = document.createElement("button")
+        btnClose.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-x-circle\" viewBox=\"0 0 16 16\">\n" +
+                "  <path d=\"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16\"/>\n" +
+                "  <path d=\"M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708\"/>\n" +
+                "</svg>"
+        btnClose.onclick = () => {
+          buildList()
+        }
+
+        li.appendChild(btnClose)
+
+
+      }
+
+      li.appendChild(btnEdit)
+
+
+
+
 
       // Додоаю як children
       ulProducts.appendChild(li)
