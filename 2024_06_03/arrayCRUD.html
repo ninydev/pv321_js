@@ -17,6 +17,7 @@
       </ul>
       <div id="editHere"></div>
       <div>
+        <button id="btnSort"> Sort </button>
       <input id="inProductName" type="text">
       <button id="btnCreateProduct" name="myButtonName" class="btn btn-success">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
@@ -46,6 +47,11 @@
   arrProductList[0] = "Bread"
   arrProductList[1] = "Milk"
   arrProductList[2] = "Bear"
+
+  document.getElementById("btnSort").onclick = () =>{
+    arrProductList.sort()
+    buildList()
+  }
 
   document.getElementById("btnDeleteFirst").onclick = () =>{
     arrProductList.shift()
