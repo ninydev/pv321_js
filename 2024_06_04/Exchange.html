@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <table>
+        <tbody id="tblExchange"></tbody>
+    </table>
+</div>
+
+<script>
+
+    const tBody = document.getElementById("tblExchange")
+
+    fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
+        .then(response => response.json())
+        .then(exchangeArray => {
+            console.log(exchangeArray)
+
+            exchangeArray.forEach(ex => {
+
+                console.log(ex)
+                let tr = document.createElement("tr")
+
+                let tdName = document.createElement("td")
+                tdName.innerHTML = ex.txt
+
+                tr.appendChild(tdName)
+
+                let tdRate = document.createElement("td")
+                tdRate.innerText = ex.rate
+                tr.appendChild(tdRate)
+
+                tBody.appendChild(tr)
+
+            })
+
+
+
+
+
+
+
+
+        })
+
+</script>
+
+</body>
+</html>
