@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let user = {
+
+        yearOB: 1977,
+
+        getYear: () => {
+            return this.yearOB
+        },
+
+        setYear: (year) => {
+            if (year < 1900 || year > 2024) {
+                console.error("Out of range")
+                return
+            }
+            this.yearOB = year
+        },
+
+        name: "Vasya",
+        createdAt: Date.now(),
+
+        functionName: () => {
+            //function Body
+        },
+
+        echo: function () {
+            console.log(this.name + " => " + Date(this.createdAt))
+        }
+    }
+
+    console.log(user)
+
+    user.echo()
+    user.setYear(1998)
+    user.password = "!q@w#e"
+
+    let jsonString = JSON.stringify(user)
+    let restoreFromJson = JSON.parse(jsonString)
+
+    console.log(restoreFromJson)
+
+
+    // console.log("of: only for Array")
+    // for (const filed of user) {
+    //     console.log(filed)
+    // }
+
+    console.log("in: ")
+    for (const userKey in user) {
+        console.log(userKey + ' => ' + user[userKey])
+    }
+
+
+</script>
+
+</body>
+</html>
