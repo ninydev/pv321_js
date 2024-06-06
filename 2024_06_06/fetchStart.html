@@ -12,6 +12,10 @@
 
 <script>
 
+    function errorBuild( message ) {
+        console.log(message)
+    }
+
     function sleepGUIThread(time = 3000) {
         let whenStop = Date.now()+ time
         console.log('start')
@@ -19,10 +23,15 @@
         console.log('stop')
     }
     
-    function buildFoundation(callBack) {
+    function buildFoundation(callBackOk, callBackError) {
         console.log('buildFoundation')
         sleepGUIThread(3000)
-        callBack(buildRoof)
+        let v = Math.floor(Math.random() * 2);
+        // if (v == 1) {
+        //     callBackError("v = 1");
+        //     return
+        // }
+        callBackOk(buildWalls)
     }
     function buildWalls(callBack) {
         console.log('buildWalls')
@@ -42,7 +51,7 @@
         buildFoundation(buildWalls)
     }
 
-    buildHouse()
+    await buildHouse()
 
 
     
