@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button"
+       onclick="alert('click')" value="test">
+
+
+<script>
+
+    function sleepGUIThread(time = 3000) {
+        let whenStop = Date.now()+ time
+        console.log('start')
+        while (whenStop > Date.now()) {}
+        console.log('stop')
+    }
+    
+    function buildFoundation(callBack) {
+        console.log('buildFoundation')
+        sleepGUIThread(3000)
+        callBack(buildRoof)
+    }
+    function buildWalls(callBack) {
+        console.log('buildWalls')
+        sleepGUIThread(3000)
+        callBack(buildRoof)
+    }
+    function buildRoof(callBack) {
+        console.log('buildRoof')
+        sleepGUIThread(3000)
+    }
+
+    function buildReady() {
+        console.log("ready")
+    }
+
+    function buildHouse() {
+        buildFoundation(buildWalls)
+    }
+
+    buildHouse()
+
+
+    
+
+
+
+
+</script>
+
+</body>
+</html>
