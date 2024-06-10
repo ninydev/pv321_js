@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+
+        #preloader {
+            position: absolute;
+            z-index: 999;
+            background-color: rgba(255,255,255,0.7);
+            margin: auto;
+            width: 100vw;
+            height: 100vh;
+            padding: 20%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="preloader">
+    <div id="spinner" class="spinner-border" role="status">
+        <span class="sr-only"></span>
+    </div>
+</div>
+
+<main id="main">
+    <button onclick="alert('Click')"> Click </button>
+    <button id="btnStartHiLoad"> Start </button>
+</main>
+
+<script>
+
+    const preloader = document.getElementById('preloader')
+
+    function showPreloader() {
+        preloader.style.display = 'block'
+        preloader.style.visibility = 'visible'
+        preloader.style.height = '100vh'
+        preloader.style.width = '100vw'
+    }
+
+    function hidePreloader() {
+        preloader.style.display = 'none'
+        preloader.style.visibility = 'hidden'
+        preloader.style.height = '0vh'
+        preloader.style.width = '0vw'
+    }
+
+
+    document.body.onload = () => {
+        console.log('loaded')
+        hidePreloader()
+    }
+
+</script>
+
+
+
+</body>
+</html>

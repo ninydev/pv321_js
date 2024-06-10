@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<div id="spinner" class="spinner-border" role="status" style="display: none; visibility: hidden">
+    <span class="sr-only"></span>
+</div>
+
+<main id="main">
+    <button onclick="alert('Click')"> Click </button>
+    <button id="btnStartHiLoad"> Start </button>
+</main>
+
+
+
+<script>
+
+    const spinner = document.getElementById('spinner')
+    const main = document.getElementById('main')
+
+    document.getElementById('btnStartHiLoad').onclick = (ev) => {
+        setTimeout(() => {
+            console.log('Start')
+            hideMain()
+            showSpinner()
+
+            setTimeout(() => {
+                console.log('HiLoad')
+                sleep(7000)
+                setTimeout(() => {
+                    console.log('Finish')
+                    showMain()
+                    hideSpinner()
+                },10)
+            },10)
+        },10)
+
+    }
+
+    function showMain() {
+        main.style.display = 'block'
+        main.style.visibility = 'visible'
+        return true
+    }
+
+    function hideMain() {
+        main.style.display = 'none'
+        main.style.visibility = 'hidden'
+        return true
+    }
+
+    function showSpinner() {
+        spinner.style.display = 'block'
+        spinner.style.visibility = 'visible'
+        return true
+    }
+
+    function hideSpinner() {
+        spinner.style.display = 'none'
+        spinner.style.visibility = 'hidden'
+        return true
+    }
+
+
+
+    function sleep(time = 4000) {
+        let whenStop = Date.now()+ time
+        while (whenStop > Date.now()) {}
+    }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

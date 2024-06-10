@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="txtDisplay">
+
+
+<table id="tblKeyboard" class="table_keyboard">
+    <tr>
+        <td><img data-someInto="someValue" data-button="1" data-src="someVal" src="img/1.png" height="128" width="128"/></td>
+        <td><img data-button="2" src="img/2.png" height="128" width="128"/></td>
+        <td> 3 </td>
+    </tr>
+</table>
+
+
+<script>
+
+    const tblKeyboard = document.getElementById("tblKeyboard")
+    const txtDisplay = document.getElementById("txtDisplay")
+
+
+    tblKeyboard.onclick = function (ev) {
+        let target = ev.target
+        console.log(target)
+        let num = parseInt(target.dataset.button)
+        console.log(num)
+
+        if(typeof (num) === "number") {
+            let oldDisplay = txtDisplay.value
+            txtDisplay.value = '' + oldDisplay + num
+        }
+
+    }
+
+    // txtDisplay.value = "Test"
+    // txtDisplay.style.backgroundColor = "#000"
+
+
+
+</script>
+
+</body>
+</html>
