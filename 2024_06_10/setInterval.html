@@ -7,6 +7,76 @@
 <body>
 
 
+<div>
+    <div id="divClock"></div>
+    <button onclick="alert('Click')"> Click </button>
+    <button id="btnStop"> Stop </button>
+    <button id="btnStart"> Start </button>
+
+    <button onclick="cancellationToken=false"> False </button>
+
+</div>
+
+
+<script>
+
+    const divClock = document.getElementById('divClock')
+    let stepCount = 0;
+    let intervalPtr = 0;
+
+    let cancellationToken = true
+
+    // function recursive () {
+    //     console.log('r start')
+    //     recursive()
+    //     console.log('r end')
+    // }
+
+    document.getElementById('btnStart').onclick = () => {
+        cycleStep()
+    }
+
+    document.getElementById('btnStop').onclick = () => {
+        // -- Abort
+        clearTimeout(intervalPtr)
+        // console.log(intervalPtr)
+    }
+
+    function cycleStep() {
+        console.log('Do Step: ' + (stepCount++))
+        console.log(' Open File, Open Memeory - Objects ... ')
+
+            let now = new Date()
+            divClock.innerText = now
+
+        if (cancellationToken)
+            intervalPtr = setTimeout( cycleStep, 1000)
+        console.log(' Step Finish => next ' + intervalPtr)
+    }
+
+    cycleStep()
+
+    function otherTimeout() {
+        console.log('Do other Step: ')
+        setTimeout(otherTimeout, 2000)
+    }
+    otherTimeout()
+
+
+
+
+
+
+    // setTimeout( () => {
+    //     console.log('set Timeout work ')
+    // }, 1000 )
+    //
+    // setInterval( () => {
+    //     let now = new Date()
+    //     console.log(' set Interval work: ' + now)
+    //     divClock.innerText = now
+    // }, 1000 )
+</script>
 
 </body>
 </html>
