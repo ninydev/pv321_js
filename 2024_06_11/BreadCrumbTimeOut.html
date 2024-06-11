@@ -55,15 +55,15 @@
             li.innerText = element.value
         olBreadcrumb.appendChild(li)
 
-        // if (typeof (element.next) !== 'undefined')
         if (element.next)
-           recursiveElement(element.next)
+            setTimeout(recursiveElement, 0, element.next)
     }
 
     let hLevel = 1;
     function recursiveReverseElement (element) {
-       if (element.next)
-           recursiveReverseElement(element.next)
+        if (element.next)
+            setTimeout(recursiveReverseElement, 0, element.next)
+
 
         let h = document.createElement('h' + hLevel)
         h.innerText = element.value
@@ -72,8 +72,13 @@
     }
 
 
-    recursiveElement(listBreadcrumb)
-    recursiveReverseElement(listBreadcrumb)
+    setTimeout(recursiveElement, 0, listBreadcrumb)
+    setTimeout(recursiveReverseElement, 0, listBreadcrumb)
+
+    // alert('stop')
+
+    // recursiveElement(listBreadcrumb)
+    // recursiveReverseElement(listBreadcrumb)
 
 
 
