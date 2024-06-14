@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+    // function someName() {}
+    // function someName(a) {}
+
+    function someName(a, b) {
+        console.log ('--------')
+        console.log ({a, b})
+
+        if (typeof (b) === 'undefined') {
+            console.log(' - circle')
+        } else {
+            console.log('rectangle')
+        }
+
+        // console.log(a)
+        // console.log(b)
+    }
+
+    someName()
+    someName(1)
+    someName(1, 2)
+    someName(1, 2, 3)
+</script>
+</body>
+</html>

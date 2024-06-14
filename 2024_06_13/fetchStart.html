@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch basic</title>
+</head>
+<body>
+
+
+
+<script>
+
+    fetch('https://vita325.com/wp-json/wp/v2/works')
+        .then(response => response.json() )
+        .then(data => console.log(data) )
+        .catch(err =>  console.error(err) )
+
+    fetch('https://vita325.com/wp-json/wp/v2/works')
+        .then(response => {
+            if (response.status !== 200) {
+                throw {message : response.statusText}
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => {
+            console.error("ERROR: ")
+            console.error(err.message)
+        })
+
+
+    // fetch('https://vita325.com/wp-json/wp/v2/works')
+    // fetch('https://www.google.com/') // CORS
+    fetch('https://vita325.com/robots.txt')
+        .then(response => {
+
+            console.log(response)
+
+            // Перевірка статусу відповіді
+            if (response.status !== 200) {
+                console.error(response.statusText)
+                // Передати обробку відповіді до блоку catch
+                throw {message : response.statusText}
+            }
+            console.log(response.body)
+            return response.blob()
+        })
+        .then( blob => {
+            console.log(blob)
+
+            if (blob.type === 'text/plain') {
+                blob.text()
+                    .then(txt => {
+                        console.log(txt)
+                    })
+            }
+
+            if (blob.type === 'application/json') {
+                blob.text()
+                    .then( txt => {
+                        console.log(txt)
+                        console.log(JSON.parse(txt))
+                    })
+            }
+        })
+        .catch(err => {
+            console.error("ERROR: ")
+            console.error(err.message)
+        })
+
+
+
+
+
+    fetch('https://vita325.com/robots.txt')
+        .then(response => {
+            console.log(response)
+        })
+</script>
+</body>
+</html>

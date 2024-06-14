@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ваше Имя">
+    <title>Tabs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        div.inputSubmit {
+            display: flex;
+            margin: 10px 0;
+        }
+        div.inputSubmit>*:not(:first-child) {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5" style="max-width: fit-content;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#task1" type="button" role="tab" aria-controls="task1" aria-selected="true">1</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task2" type="button" role="tab" aria-controls="task2" aria-selected="false">2</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task3" type="button" role="tab" aria-controls="task3" aria-selected="false">3</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task4" type="button" role="tab" aria-controls="task4" aria-selected="false">4</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task5" type="button" role="tab" aria-controls="task5" aria-selected="false">5</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task6" type="button" role="tab" aria-controls="task6" aria-selected="false">6</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task7" type="button" role="tab" aria-controls="task7" aria-selected="false">7</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task8" type="button" role="tab" aria-controls="task8" aria-selected="false">8</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task9" type="button" role="tab" aria-controls="task9" aria-selected="false">9</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#task10" type="button" role="tab" aria-controls="task10" aria-selected="false">10</button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="task1" role="tabpanel">
+            <h3>Визначити вікову категорію</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task1input" class="form-control" placeholder="Скільки вам років?">
+                <button class="btn btn-primary" onclick="determineAgeCategory()">Submit</button>
+            </div>
+            <div id="task1result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task2" role="tabpanel">
+            <h3>Символ на клавіші з числом</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task2input" class="form-control" placeholder="Введіть число від 0 до 9">
+                <button class="btn btn-primary" onclick="getSpecialCharacter()">Submit</button>
+            </div>
+            <div id="task2result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task3" role="tabpanel">
+            <h3>Перевірка повторень у числі</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task3input" class="form-control" placeholder="Введіть число">
+                <button class="btn btn-primary" onclick="checkDuplicateDigits()">Submit</button>
+            </div>
+            <div id="task3result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task4" role="tabpanel">
+            <h3>Чи є високосним рік</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task4input" class="form-control" placeholder="Введіть рік">
+                <button class="btn btn-primary" onclick="checkLeapYear()">Submit</button>
+            </div>
+            <div id="task4result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task5" role="tabpanel">
+            <h3>Чи є число паліндромом</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task5input" class="form-control" placeholder="Enter a five-digit number">
+                <button class="btn btn-primary" onclick="checkPalindrome()">Submit</button>
+            </div>
+            <div id="task5result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task6" role="tabpanel">
+            <h3>Конвертор валют</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task6input" class="form-control" placeholder="Кількість USD">
+                <select id="currencySelect" class="form-control" style="width: 60px">
+                    <option value="EUR">EUR</option>
+                    <option value="UAN">UAH</option>
+                    <option value="AZN">AZN</option>
+                </select>
+                <button class="btn btn-primary" onclick="convertCurrency()">Submit</button>
+            </div>
+            <div id="task6result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task7" role="tabpanel">
+            <h3>Знижка</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task7input" class="form-control" placeholder="Введіть сумму покупки">
+                <button class="btn btn-primary" onclick="calculateDiscount()">Submit</button>
+            </div>
+            <div id="task7result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task8" role="tabpanel">
+            <h3>Коло у квадраті</h3>
+            <div class="inputSubmit">
+                <input type="number" id="task8input" class="form-control" placeholder="Довжина кола" style="width: 80%">
+                <input type="number" id="task8input2" class="form-control" placeholder="Периметр квадрату">
+                <button class="btn btn-primary" onclick="checkCircleInSquare()">Submit</button>
+            </div>
+            <div id="task8result" class="alert mt-2" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task9" role="tabpanel">
+            <h3>Quiz</h3>
+            <div id="quiz">
+                <div class="mb-2">
+                    <label>1. Питання 1</label>
+                    <select id="question1" class="form-control">
+                        <option value="0">Неправильно</option>
+                        <option value="1">Правильно</option>
+                        <option value="2">Неправильно</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label>2. Питання 2</label>
+                    <select id="question2" class="form-control">
+                        <option value="0">Неправильно</option>
+                        <option value="1">Неправильно</option>
+                        <option value="2">Правильно</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label>3. Питання 3</label>
+                    <select id="question3" class="form-control">
+                        <option value="0">Правильно</option>
+                        <option value="1">Неправильно</option>
+                        <option value="2">Неправильно</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary mb-2" onclick="calculateQuizScore()">Submit</button>
+            <div id="task9result" class="alert" role="alert"></div>
+        </div>
+        <div class="tab-pane fade" id="task10" role="tabpanel">
+            <h3>Слідуюча дата</h3>
+            <input type="number" id="task10input" class="form-control" placeholder="Введіть день">
+            <input type="number" id="task10input2" class="form-control mt-2" placeholder="Введіть місяць">
+            <input type="number" id="task10input3" class="form-control mt-2" placeholder="Введіть рік">
+            <button class="btn btn-primary mb-2 mt-2" onclick="calculateNextDate()">Submit</button>
+            <div id="task10result" class="alert" role="alert"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function determineAgeCategory() {
+        const age = document.getElementById('task1input').value;
+        const resultElement = document.getElementById('task1result');
+        let category = '';
+        if (age >= 0 && age <= 2) {
+            category = 'Дитина';
+        } else if (age >= 12 && age <= 18) {
+            category = 'Підліток';
+        } else if (age >= 18 && age <= 60) {
+            category = 'Дорослий';
+        } else if (age > 60) {
+            category = 'Пенсіонер';
+        } else {
+            resultElement.className = 'alert alert-danger';
+            resultElement.textContent = "undefined";
+            return;
+        }
+        resultElement.className = 'alert alert-primary';
+        resultElement.textContent = category;
+    }
+
+    function getSpecialCharacter() {
+        const number = document.getElementById('task2input').value;
+        const resultElement = document.getElementById('task2result');
+        const characters = [')', '!', '@', '#', '$', '%', '^', '&', '*', '('];
+        let result = 'Invalid number';
+        if (number >= 0 && number <= 9) {
+            resultElement.textContent = characters[number];
+            resultElement.className = 'alert alert-primary';
+        } else {
+            resultElement.textContent = "undefined";
+            resultElement.className = 'alert alert-danger';
+        }
+
+    }
+
+    function checkDuplicateDigits() {
+        const number = document.getElementById('task3input').value;
+         const resultElement = document.getElementById('task3result');
+        const digits = number.toString().split('');
+        if (digits.length !== new Set(digits).size) {
+            resultElement.className = 'alert alert-danger';
+            resultElement.textContent = 'Є однакові цифри';
+        } else {
+            resultElement.className = 'alert alert-success';
+            resultElement.textContent = 'Немає однакових чисел';
+        }
+    }
+
+    function checkLeapYear() {
+        const year = document.getElementById('task4input').value;
+        const resultElement = document.getElementById('task4result');
+        if (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) { // вкрадено з гугла
+           resultElement.className = 'alert alert-success';
+            resultElement.textContent = "Це високосний рік";
+        } else {
+            resultElement.className = 'alert alert-danger';
+            resultElement.textContent = "Це не високосний рік";
+        }
+
+    }
+
+    function checkPalindrome() {
+        const number = document.getElementById('task5input').value;
+        const resultElement = document.getElementById('task5result');
+        if (number === number.toString().split('').reverse().join('')) {
+            resultElement.className = 'alert alert-success';
+            resultElement.textContent = 'Число є паліндромом';
+        } else {
+            resultElement.className = 'alert alert-danger';
+            resultElement.textContent = 'Число не є паліндромом';
+        }
+    }
+
+    function convertCurrency() {
+        const usd = document.getElementById('task6input').value;
+        const currency = document.getElementById('currencySelect').value;
+        const resultElement = document.getElementById('task6result');
+        let rate = 0;
+        switch (currency) {
+            case 'EUR':
+                rate = 0.92;
+                break;
+            case 'UAH':
+                rate = 40.51;
+                break;
+            case 'AZN':
+                rate = 1.7;
+                break;
+        }
+        resultElement.className = 'alert alert-primary';
+        resultElement.textContent = `${(usd * rate).toFixed(2)} ${currency}`;
+    }
+
+    function calculateDiscount() {
+        const amount = document.getElementById('task7input').value;
+        const resultElement = document.getElementById('task7result');
+        let discount = 0;
+        if (amount >= 200 && amount < 300) {
+            discount = 0.03;
+        } else if (amount >= 300 && amount < 500) {
+            discount = 0.05;
+        } else if (amount >= 500) {
+            discount = 0.07;
+        }
+        resultElement.className = 'alert alert-primary';
+        resultElement.textContent = `Сума зі знижкою: ${(amount - (amount * discount)).toFixed(2)}`;
+    }
+
+    function checkCircleInSquare() {
+        const circumference = document.getElementById('task8input').value;
+        const perimeter = document.getElementById('task8input2').value;
+        const radius = circumference / (2 * Math.PI);
+        const side = perimeter / 4;
+        const resultElement = document.getElementById('task8result');
+        if (radius <= (side / 2)) {
+            resultElement.className = 'alert alert-success';
+            resultElement.textContent = 'Коло може поміститися в квадрат';
+        } else {
+            resultElement.className = 'alert alert-danger';
+            resultElement.textContent = 'Коло не може поміститися в квадрат';
+        }
+    }
+
+    function calculateQuizScore() {
+        const answers = [1, 2, 0]; // Correct answers
+        let score = 0;
+        for (let i = 1; i <= 3; i++) {
+            const userAnswer = document.getElementById(`question${i}`).value;
+            if (userAnswer == answers[i - 1]) {
+                score += 2;
+            }
+        }
+        const resultElement = document.getElementById('task9result');
+        resultElement.className = 'alert alert-primary';
+        resultElement.textContent = `Ваш результат: ${score}`;
+    }
+
+    function calculateNextDate() {
+        let day = parseInt(document.getElementById('task10input').value);
+        let month = parseInt(document.getElementById('task10input2').value);
+        let year = parseInt(document.getElementById('task10input3').value);
+
+        const daysInMonth = [31, (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        day++;
+        if (day > daysInMonth[month - 1]) {
+            day = 1;
+            month++;
+            if (month > 12) {
+                month = 1;
+                year++;
+            }
+        }
+
+        const resultElement = document.getElementById('task10result');
+        resultElement.className = 'alert alert-primary';
+        resultElement.textContent = `Наступна дата: ${day}/${month}/${year}`;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
