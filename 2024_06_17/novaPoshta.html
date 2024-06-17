@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <select id="npAreas">
+    </select>
+</div>
+
+
+<script>
+    const aptKey = ''
+
+    let selectArea = document.getElementById('npAreas')
+
+
+    function buildCities() {
+    }
+
+
+    selectArea.onchange = (ev) => {
+
+        //  Знайти тег option
+        let areaOption = selectArea.children[selectArea.selectedIndex]
+        let areaCenter = areaOption.dataset.AreasCenter
+
+        console.log(areaCenter)
+
+        fetch('https://api.novaposhta.ua/v2.0/json/', {
+            method: 'POST',
+            body: JSON.stringify({
+                "apiKey": aptKey,
+                "modelName": "AddressGeneral",
+                "calledMethod": "getCities",
+                "methodProperties": {
+                    "Ref": areaCenter
+                }
+            })
+        })
+            .then(res => res.json())
+            .then(jsonResponse => {
+                console.log(jsonResponse)
+                if (!jsonResponse.success) {
+                    throw  { message : 'Data Error '}
+                }
+                console.log(jsonResponse.data)
+            })
+            .catch(err => {
+                console.error('Error')
+                console.error(err)
+            })
+    }
+
+
+
+
+    function buildAreas() {
+        selectArea.innerHTML = ''
+        areas.forEach(area => {
+            let option = document.createElement('option')
+            option.innerText = area['Description']
+            option.value = area.Ref
+            option.dataset.AreasCenter = area.AreasCenter
+            selectArea.appendChild(option)
+        })
+    }
+
+    let areas = []
+
+    fetch('https://api.novaposhta.ua/v2.0/json/', {
+        method: 'POST',
+        body: JSON.stringify({
+            "apiKey": aptKey,
+            "modelName": "AddressGeneral",
+            "calledMethod": "getAreas",
+            "methodProperties": {   }
+        })
+    })
+        .then(res => res.json())
+        .then(jsonResponse => {
+            if (!jsonResponse.success) {
+                throw  { message : 'Data Error '}
+            }
+            areas = jsonResponse.data
+            console.log(areas)
+            buildAreas()
+        })
+        .catch(err => {
+            console.error('Error')
+            console.error(err)
+        })
+
+</script>
+
+</body>
+</html>
