@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body { font-size: 2em;}
+    table#tblKeyboard td {cursor: pointer; padding: 10px; margin: 10px}
+  </style>
+</head>
+<body>
+
+
+<div id="txtDisplay">
+  0
+</div>
+
+<table id="tblKeyboard" class="table_keyboard" border="1">
+  <tr>
+    <td> 7 </td>
+    <td> 8 </td>
+    <td> 9 </td>
+    <td> </td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <td> 4 </td>
+    <td> 5 </td>
+    <td> 6 </td>
+    <td> * </td>
+    <td> / </td>
+  </tr>
+  <tr>
+    <td> 1 </td>
+    <td> 2 </td>
+    <td> 3 </td>
+    <td> + </td>
+    <td> - </td>
+  </tr>
+  <tr>
+    <td> 0 </td>
+    <td></td>
+    <td></td>
+    <td colspan="2"> = </td>
+  </tr>
+
+</table>
+
+
+<script>
+
+  const tblKeyboard = document.getElementById("tblKeyboard")
+  const txtDisplay = document.getElementById("txtDisplay")
+
+  function updateDisplay() {
+    txtDisplay.innerHTML = ''
+    let resString = '' + a
+    if (operation !== '') {
+      resString+= ' ' + operation + ' ' + b
+    }
+    txtDisplay.innerText = resString
+  }
+
+  let a = 0
+  let b = 0
+  let operation = ''
+
+  function addNum(num) { //a = 0 87
+    if (operation === '')
+      a = a * 10 + num
+    else
+      b = b * 10 + num
+  }
+
+
+  tblKeyboard.onclick = (ev) => {
+    let tdKey = ev.target
+
+    let num = parseInt(tdKey.innerText)
+
+    if (!Number.isNaN(num)) {
+      console.log(num)
+      addNum(num)
+    } else {
+      let op = tdKey.innerText
+      console.log(op)
+      switch (op) {
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+          operation = op
+          break
+        case '=':
+            if (operation === '')
+            break
+          switch (operation) {
+            case '+':
+              a = a + b
+              break
+            case '-':
+              a = a - b
+              break
+            case '*':
+              a = a * b
+              break
+            case '/':
+              a = a / b
+              break
+          }
+          operation = ''
+          b = 0
+      }
+    }
+
+    updateDisplay()
+
+  }
+
+
+
+</script>
+</body>
+</html>

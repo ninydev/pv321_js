@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Slider for Vita325</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<main>
+    <div id="vita325Works" class="carousel slide">
+        <div class="carousel-inner" id="vita325SliderBody">
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#vita325Works" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#vita325Works" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+
+    let vita325SliderBody = document.getElementById('vita325SliderBody')
+
+    function buildSlider(data) {
+        console.log(data)
+
+        data.forEach(slide => {
+            let s = {
+                id: slide.id,
+                title: slide['title'].rendered,
+                imgUrl: 'https://vita325.com/' + slide.acf.mainThumbnail_desktop,
+                body: slide.acf.addProjectDesctiptionBody_desktop
+            }
+
+            let div = document.createElement('div')
+            div.className = 'carousel-item'
+
+            let img = document.createElement('img')
+            img.src = s.imgUrl
+            div.appendChild(img)
+
+            vita325SliderBody.appendChild(div)
+
+            console.log(s)
+        })
+
+        vita325SliderBody.firstElementChild.className = 'carousel-item active'
+
+    }
+
+    fetch('https://vita325.com/wp-json/wp/v2/works')
+        .then(response => response.json() )
+        .then(data => buildSlider(data) )
+        .catch(err => {
+            console.error('Error')
+            console.error(err) })
+</script>
+
+</body>
+</html>
