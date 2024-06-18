@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nova Poshta</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 
 
 <script>
-    const aptKey = ''
+
 
     let selectArea = document.getElementById('npAreas')
 
@@ -27,8 +27,11 @@
         //  Знайти тег option
         let areaOption = selectArea.children[selectArea.selectedIndex]
         let areaCenter = areaOption.dataset.AreasCenter
+        console.log('areaCenter: ' + areaCenter)
 
-        console.log(areaCenter)
+        let areaRef = selectArea.value
+        console.log('Area Ref: ' + areaRef)
+
 
         fetch('https://api.novaposhta.ua/v2.0/json/', {
             method: 'POST',
@@ -37,7 +40,7 @@
                 "modelName": "AddressGeneral",
                 "calledMethod": "getCities",
                 "methodProperties": {
-                    "Ref": areaCenter
+                    "AreaRef": areaRef
                 }
             })
         })
@@ -70,6 +73,21 @@
     }
 
     let areas = []
+
+
+
+    // protocolType (http, https, ftp, smtp ...)
+    // ://
+    // {subdomain } - computerName (api, www, storage ...)
+    // {domain } - (rozetka, novaposhta, ninydev ...)
+    // {domainZone } - (com.ua, ua, od.ua ... )
+
+    // :{port} - {80 - http, 443 - https, 3306 - mySql, 1347 - MSSql, ...}
+
+    // {dir/dir/dir/filename} - path || route
+    // ? {getKey1=getVal1} - GET variables
+    // & {getKey2=getVal2}
+
 
     fetch('https://api.novaposhta.ua/v2.0/json/', {
         method: 'POST',

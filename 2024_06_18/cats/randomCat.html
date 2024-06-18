@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img id="imgCat" />
+
+<script>
+
+    let imgCat = document.getElementById('imgCat')
+
+    fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+    .then(response => {
+        if (!response.ok) {
+            throw {message: "Response Status bad"}
+        }
+        if (response.status !== 200) {
+            throw {message: "Response Status bad"}
+        }
+        return response.json()
+    })
+    .then(jsonResponse => {
+        console.log(jsonResponse)
+        imgCat.src = jsonResponse[0].url
+        imgCat.alt = jsonResponse[0].id
+        imgCat.height = jsonResponse[0].height
+        imgCat.width = jsonResponse[0].width
+    })
+    .catch(err => {
+        console.error('Err')
+        console.error(err)
+    })
+</script>
+
+</body>
+</html>

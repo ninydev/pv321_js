@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  let someData = {
+    color: '#fff',
+    id: 12,
+    name: "Some Name",
+    someArray : [1,2,3]
+  }
+  // byte 64 + [256]
+
+  console.log(someData)
+
+  let jsonString = JSON.stringify(someData)
+
+  console.log(jsonString)
+
+  let restoreObject = JSON.parse(jsonString)
+
+  console.log(restoreObject)
+
+
+
+
+</script>
+
+</body>
+</html>
