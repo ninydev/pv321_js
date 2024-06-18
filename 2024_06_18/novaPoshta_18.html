@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <select id="npAreas">
+    </select>
+</div>
+<div>
+    <input type="text" id="citySearch">
+    <select id="npCities">
+    </select>
+</div>
+
+
+<script>
+
+    // HTML TAG for select elements
+    let selectArea = document.getElementById('npAreas')
+    let selectCities = document.getElementById('npCities')
+    let inputCitySearch = document.getElementById('citySearch')
+
+    // arrays for information
+    let areas = []
+    let cities = []
+
+    /**
+     * Build options for select cities
+     */
+    function buildCities() {
+        selectCities.innerHTML = ''
+        cities.forEach(city => {
+            let option = document.createElement('option')
+            option.innerText = city['Description']
+            option.value = city.Ref
+            selectCities.appendChild(option)
+        })
+    }
+
+    /**
+     * Get Areas
+     */
+    function getCities() {
+
+        let areaRef = selectArea.value
+        let search = inputCitySearch.value
+
+        fetch('https://api.novaposhta.ua/v2.0/json/', {
+            method: 'POST',
+            body: JSON.stringify({
+                "apiKey": aptKey,
+                "modelName": "AddressGeneral",
+                // Different 1 - calledMethod
+                "calledMethod": "getCities",
+                "methodProperties": {
+                    "AreaRef": areaRef,
+                    "FindByString": search
+                }
+            })
+        })
+            .then(res => res.json())
+            .then(jsonResponse => {
+                if (!jsonResponse.success) {
+                    throw  { message : 'Data Error '}
+                }
+                // Different 2 - array
+                cities = jsonResponse.data
+                console.log(cities)
+                // Different 3 - build function
+                buildCities()
+            })
+            .catch(err => {
+                console.error('Error')
+                console.error(err)
+            })
+    }
+
+    selectArea.onchange = () => {
+        getCities()
+    }
+
+    inputCitySearch.onkeyup = () => {
+        getCities()
+    }
+
+
+
+
+
+    /**
+     * Build options for select area
+     */
+    function buildAreas() {
+        selectArea.innerHTML = ''
+        areas.forEach(area => {
+            let option = document.createElement('option')
+            option.innerText = area['Description']
+            option.value = area.Ref
+            option.dataset.AreasCenter = area.AreasCenter
+            selectArea.appendChild(option)
+        })
+    }
+
+    /**
+     * Get Areas
+     */
+    function getAreas() {
+        fetch('https://api.novaposhta.ua/v2.0/json/', {
+            method: 'POST',
+            body: JSON.stringify({
+                "apiKey": aptKey,
+                "modelName": "AddressGeneral",
+                // Different 1 - calledMethod
+                "calledMethod": "getAreas",
+                "methodProperties": {   }
+            })
+        })
+            .then(res => res.json())
+            .then(jsonResponse => {
+                if (!jsonResponse.success) {
+                    throw  { message : 'Data Error '}
+                }
+                // Different 2 - array
+                areas = jsonResponse.data
+                console.log(areas)
+                // Different 3 - build function
+                buildAreas()
+            })
+            .catch(err => {
+                console.error('Error')
+                console.error(err)
+            })
+    }
+
+    /**
+     * first Call
+     */
+    getAreas()
+
+
+</script>
+
+
+</body>
+</html>
