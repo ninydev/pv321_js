@@ -24,6 +24,9 @@
     })
     .then(jsonResponse => {
         console.log(jsonResponse)
+        if (!jsonResponse[0]) {
+            throw {message: "No Cat in response"}
+        }
         imgCat.src = jsonResponse[0].url
         imgCat.alt = jsonResponse[0].id
         imgCat.height = jsonResponse[0].height

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <select id="npAreas">
+    </select>
+</div>
+<div>
+    <input type="text" id="citySearch">
+    <select id="npCities">
+    </select>
+</div>
+
+
+<script src="novaposhtaFetch.js"></script>
+
+<script>
+
+    // HTML TAG for select elements
+    let selectArea = document.getElementById('npAreas')
+    let selectCities = document.getElementById('npCities')
+    let inputCitySearch = document.getElementById('citySearch')
+
+    // arrays for information
+    let areas = []
+    let cities = []
+
+    /**
+     * Build options for select cities
+     */
+    function buildCities() {
+        selectCities.innerHTML = ''
+        cities.forEach(city => {
+            let option = document.createElement('option')
+            option.innerText = city['Description']
+            option.value = city.Ref
+            selectCities.appendChild(option)
+        })
+    }
+
+    /**
+     * Get Areas
+     */
+    function getCities() {
+
+        let areaRef = selectArea.value
+        let search = inputCitySearch.value
+
+        npFetchCallBack("getCities", {
+            "AreaRef": areaRef,
+            "FindByString": search
+        }, (data) => {
+            cities = data
+            console.log(cities)
+            buildCities()
+        })
+    }
+
+    selectArea.onchange = () => {
+        getCities()
+    }
+
+    inputCitySearch.onkeyup = () => {
+        getCities()
+    }
+
+
+    /**
+     * Build options for select area
+     */
+    function buildAreas() {
+        selectArea.innerHTML = ''
+        areas.forEach(area => {
+            let option = document.createElement('option')
+            option.innerText = area['Description']
+            option.value = area.Ref
+            option.dataset.AreasCenter = area.AreasCenter
+            selectArea.appendChild(option)
+        })
+    }
+
+    /**
+     * Get Areas
+     */
+    function getAreas() {
+        npFetchCallBack("getAreas", {}, (data) => {
+            areas = data
+            console.log(areas)
+            buildAreas()
+        })
+    }
+
+    /**
+     * first Call
+     */
+    getAreas()
+
+
+</script>
+
+
+</body>
+</html>
