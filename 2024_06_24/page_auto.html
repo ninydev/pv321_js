@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Page default </title>
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<!-- Begin HTML Code -->
+<header id="headerMain">
+    <h1>Site name - головне слово для пошуку - "Автівка" </h1>
+</header>
+
+<main>
+    <article>
+        <header><h2>Article first - 2 рівень слова - "Toyota" </h2></header>
+        <div>
+            <h3> Ремонт коробки на тойоті  </h3>
+            <p style="display: none; visibility: hidden"> Search KeyWords </p>
+        </div>
+        <footer>
+            <a href="fun_from_timeout.html"> Read More </a>
+        </footer>
+    </article>
+
+    <article>
+        <header><h2>Article second - 2 рівень слова - "Mazda" </h2></header>
+        <div>
+            <h3> Ротерни двигуни на маздах </h3>
+        </div>
+    </article>
+
+    <article>
+        <header><h2>Article 3 - 2 рівень слова - "Ravon" </h2></header>
+    </article>
+</main>
+<!-- End HTML Code -->
+
+
+<script>
+
+    const headerMain = document.getElementById('headerMain')
+    let h2 = document.createElement('h2')
+    h2.innerText = 'Цій текст пошукова система не побачить'
+    headerMain.appendChild(h2)
+
+</script>
+
+</body>
+</html>

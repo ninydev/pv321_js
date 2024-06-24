@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Begin HTML Code -->
+<div>
+    <input id="filmName" value="Крути 1918">
+    <button id="btnStartSearch"> Search </button>
+</div>
+
+<div id="result">
+</div>
+<!-- End HTML Code -->
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="../_lib/myToastify.js"></script>
+<script src="../_lib/MyLocalStorage.js"></script>
+<script src="../_lib/Logger.js"></script>
+
+<script>
+
+    // API Keys
+
+
+    // Настройка запиту до АПИ
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': xRapidapiKey,
+            'x-rapidapi-host': xRapidapiHost
+        }
+    };
+
+    const url = 'https://imdb146.p.rapidapi.com/v1/find/?query='
+
+    // Inputs
+    const inputFilmName = document.getElementById('filmName')
+    const btnStartSearch = document.getElementById('btnStartSearch')
+    const divResult = document.getElementById('result')
+
+    // Починаю шукаті фільм
+    btnStartSearch.onclick = () => {
+
+        // Повидомляю користувачу - що я почав звпит
+        divResult.innerHTML = ''
+        divResult.innerText = 'Searching...'
+        btnStartSearch.disabled = true
+        inputFilmName.disabled = true
+
+
+
+    }
+
+
+</script>
+
+
+
+</body>
+</html>

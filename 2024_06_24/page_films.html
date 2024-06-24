@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Begin HTML Code -->
+
+<header><h1> Best films site </h1></header>
+
+<main>
+    <article itemscope itemtype="https://schema.org/Movie">
+        <header>
+            <h2 itemprop="name"> Поводирь </h2>
+        </header>
+        <div id="filmRate1">AJAX</div>
+    </article>
+
+    <article itemscope itemtype="https://schema.org/Movie">
+        <header>
+            <h2 itemprop="name"> Крути 1918</h2>
+        </header>
+        <div id="filmRate2">AJAX</div>
+    </article>
+</main>
+
+<!-- End HTML Code -->
+
+
+
+<script>
+    const filmRate1 = document.getElementById('filmRate1')
+    const filmRate2 = document.getElementById('filmRate2')
+
+    filmRate1.innerText = "Change Text"
+    filmRate2.innerText = "Change Text"
+
+</script>
+
+</body>
+</html>
