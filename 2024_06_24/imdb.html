@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 <body>
 <!-- Begin HTML Code -->
@@ -41,6 +43,11 @@
     const inputFilmName = document.getElementById('filmName')
     const btnStartSearch = document.getElementById('btnStartSearch')
     const divResult = document.getElementById('result')
+    
+    function inputsOn() {
+        btnStartSearch.disabled = false
+        inputFilmName.disabled = false
+    }
 
     // Починаю шукаті фільм
     btnStartSearch.onclick = () => {
@@ -50,6 +57,58 @@
         divResult.innerText = 'Searching...'
         btnStartSearch.disabled = true
         inputFilmName.disabled = true
+
+        fetch(url + inputFilmName.value, options)
+            .then(response => response.json())
+            .then(serverData => {
+                Logger.info(serverData)
+
+                if (!serverData['titleResults'].hasExactMatches) {
+                    myToastify("Error - Не знайдено" , {
+                        background: "linear-gradient(to right, #550000, #ff0000)"
+                    })
+                    divResult.innerText = 'Не знайдено'
+                    inputsOn()
+                    return
+                }
+
+                const films = serverData['titleResults']['results']
+                Logger.info(films)
+                inputsOn()
+                divResult.innerText = ''
+                const  ul = document.createElement('ul')
+
+                films.forEach(film => {
+                    const li = document.createElement('li')
+                    li.id = film.id
+                    li.dataset.id = film.id
+
+                    const img = document.createElement('img')
+                    img.src = film.titlePosterImageModel.url
+                    img.width = '250'
+                    li.appendChild(img)
+
+                    const h3 = document.createElement('h3')
+                    h3.innerText = film.titleNameText + ' (' + film.titleReleaseText + ')'
+                    li.appendChild(h3)
+
+                    const p = document.createElement('p')
+                    p.innerText = film.titlePosterImageModel.caption
+                    li.appendChild(p)
+
+                    ul.appendChild(li)
+                })
+
+                divResult.appendChild(ul)
+
+
+            })
+            .catch(err=> {
+                myToastify("Error" + err.message, {
+                    background: "linear-gradient(to right, #550000, #ff0000)"
+                })
+                Logger.error(err)
+            })
 
 
 
