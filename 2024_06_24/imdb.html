@@ -8,6 +8,9 @@
 </head>
 <body>
 <!-- Begin HTML Code -->
+
+<header><h1> Дівітися фільм онлайн </h1></header>
+
 <div>
     <input id="filmName" value="Крути 1918">
     <button id="btnStartSearch"> Search </button>
@@ -26,7 +29,8 @@
 <script>
 
     // API Keys
-
+    const xRapidapiKey = '7e2afce0b1msh7f5c23d92a82e63p15d2e7jsn1fb4d1a13ff8'
+    const xRapidapiHost = 'imdb146.p.rapidapi.com'
 
     // Настройка запиту до АПИ
     const options = {
@@ -74,7 +78,8 @@
 
                 const films = serverData['titleResults']['results']
                 Logger.info(films)
-                inputsOn()
+                myToastify("Get films: " + films.length)
+
                 divResult.innerText = ''
                 const  ul = document.createElement('ul')
 
@@ -100,7 +105,7 @@
                 })
 
                 divResult.appendChild(ul)
-
+                inputsOn()
 
             })
             .catch(err=> {

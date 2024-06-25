@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  const filmName = 'Matrix'
+
+  const url = 'https://api.themoviedb.org/3/search/movie'
+
+  const options = {
+    headers: {
+      "Authorization": 'Bearer ' + apiToken,
+      "accept": 'application/json'
+    }
+  }
+
+  fetch(url + '?query=' + filmName + '&language=uk-UA', options)
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => {
+            console.error(err)
+          })
+
+
+
+
+</script>
+
+</body>
+</html>

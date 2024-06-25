@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  //++ 1 - Читаемо доку та якщо потрибно - створюемо API_KEY
+
+
+  //++ 2 - збудувати посилання
+  const url = 'https://myfitnesspal2.p.rapidapi.com/searchByKeyword?keyword='
+  const keyword = 'cats'
+  // https :// -  протокол
+  // subdomain www.                                       myfitnesspal2.p.
+  // domain google                                        rapidapi
+  // domain zone .com.ua                                  .com
+  // path /search                                         /searchByKeyword
+  // variables ?key1=val1&key2=val2 ... q=WhatSearch      keyword=
+
+  //++ 3 - якщо потрибно - збудувати body (приклад для новой пошти)
+  // {
+  //   "apiKey": "[ВАШ КЛЮЧ]",
+  //         "modelName": "CounterpartyGeneral",
+  //         "calledMethod": "getCounterpartyAddresses",
+  //         "methodProperties": {
+  //   "Ref" : "00000000-0000-0000-0000-000000000000",
+  //           "CounterpartyProperty" : "Sender"
+  // }
+  const body = {}
+
+  //++ 4 - збудувати options, ящко потрибно
+  // {
+  //   method: "POST", // *GET, POST, PUT, DELETE, etc.
+  //           mode: "cors", // no-cors, *cors, same-origin
+  //         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+  //         credentials: "same-origin", // include, *same-origin, omit
+  //         headers: {
+  //   "Content-Type": "application/json",
+  //   // 'Content-Type': 'application/x-www-form-urlencoded',
+  // },
+  //   redirect: "follow", // manual, *follow, error
+  //           referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  //         body: JSON.stringify(body), // body data type must match "Content-Type" header
+  // }
+
+  const options = {
+    headers: {
+      'x-rapidapi-key': '7e2afce0b1msh7f5c23d92a82e63p15d2e7jsn1fb4d1a13ff8',
+      'x-rapidapi-host': 'myfitnesspal2.p.rapidapi.com'
+    }
+  }
+
+  // 5++ - робимо запит
+  fetch(url + keyword, options)
+          .then(res => {
+            console.log(res)
+            return res.json()
+          })
+          .then(data => {
+            console.log(data)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+
+
+</script>
+
+</body>
+</html>
