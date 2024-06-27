@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <style>
+    .toSelect {font-weight: bold}
+    div.toSelect {background-color: aqua}
+  </style>
+
+</head>
+
+<body>
+
+<div id="app" class="toSelect">Div</div>
+
+<main>
+  <ul id="lstjQuery">
+    <li class="toSelect">first</li>
+    <li>2</li>
+    <li id="li3_jQuery">3</li>
+    <li class="toSelect">4</li>
+    <li>last</li>
+  </ul>
+  <button id="btnIn"> FadeIn </button>
+  <button id="btnOut"> FadeOut </button>
+
+  <ul>
+    <li class="toSelect">first</li>
+    <li>2</li>
+    <li id="li3_JS">3</li>
+    <li class="toSelect">4</li>
+    <li>last</li>
+  </ul>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+  $('#btnIn').click(function () {
+    $('#lstjQuery').fadeIn()
+  })
+
+  $('#btnOut').click( function () {
+    $('#lstjQuery').fadeOut()
+  })
+
+  $('li').addClass('itsJQuery')
+
+  document.querySelectorAll('li').forEach(li => {
+    li.classList.add('itsJS')
+  })
+
+  // $('#li3_jQuery').text('Hello jQuery')
+  // // innerText => text()
+  // // innerHTML => html()
+  // // onclick => click
+  // // ...
+  //
+  // document.getElementById('li3_JS').innerText = 'Hello JS'
+
+
+</script>
+
+
+
+</body>
+</html>

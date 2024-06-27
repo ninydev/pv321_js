@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .toSelect {font-weight: bold}
+        div.toSelect {background-color: aqua}
+    </style>
+</head>
+<body>
+<div id="app" class="toSelect">Div</div>
+
+<main>
+    <ul>
+        <li class="toSelect">first</li>
+        <li>2</li>
+        <li id="li3">3</li>
+        <li class="toSelect">4</li>
+        <li>last</li>
+    </ul>
+</main>
+
+<script>
+
+    // div.toSelect li.toSelect li#li3
+    const collectionLi = document.querySelectorAll('.toSelect')
+    console.log(collectionLi)
+
+    const firstElement = document.querySelector('.toSelect')
+    console.log(firstElement)
+
+
+
+
+    // const li3 = document.getElementById('li3')
+    //
+    // const parentLiNode = li3.parentNode
+    // // console.log(parentLiNode)
+    //
+    // // console.log(parentLiNode.children)
+    // // console.log(parentLiNode.childNodes)
+    //
+    //
+    // const parentLiElement = li3.parentElement
+    // // console.log(parentLiElement)
+    //
+    // parentLiElement.firstElementChild.style.border = '1px solid red'
+    // parentLiElement.lastElementChild.style.border = '1px solid green'
+    //
+    // // console.log(parentLiElement.children)
+    // // console.log(parentLiElement.childNodes)
+
+
+
+
+</script>
+
+</body>
+</html>
