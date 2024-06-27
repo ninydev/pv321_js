@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<main>
+    <ul id="lstFilms">
+    </ul>
+    <button id="btnMore">
+        Load More
+    </button>
+</main>
+
+<script>
+    // Elements
+    const lstFilms = document.getElementById('lstFilms')
+    const btnMore = document.getElementById('btnMore')
+
+    // Кількисть фильмів
+    const entityCount = 13;
+
+
+    let perPage = 2;
+    let currentPage = 0;
+
+    function addEntityToList() {
+        for(let i = currentPage * perPage; i < currentPage * perPage + perPage; i++ )
+        {
+            let li = document.createElement('li')
+            li.innerText = 'element ' + i
+            lstFilms.appendChild(li)
+        }
+    }
+
+    btnMore.onclick = () => {
+        currentPage++
+        if (currentPage * perPage > entityCount) {
+            btnMore.disabled
+            btnMore.innerText = ' No More films'
+            return
+        }
+        addEntityToList()
+    }
+
+    addEntityToList()
+
+
+
+
+
+</script>
+
+</body>
+</html>
